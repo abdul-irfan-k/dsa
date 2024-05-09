@@ -10,16 +10,18 @@ export class SingleLinkedList<T> {
   display() {
     let temp = this.head;
 
+    let str = "";
     while (temp != null) {
-      console.log(temp.data);
+      str += `${temp.data} `;
       temp = temp.next;
     }
+    console.log(str)
   }
 
   insertInBegin(data: T) {
     const newNode: Node<T> = new Node(data);
 
-    if (this.head == null) {
+    if (this.checkIsEmpty()) {
       this.head = newNode;
       return;
     }
@@ -65,6 +67,34 @@ export class SingleLinkedList<T> {
     temp.next = newNode;
     newNode.next = nextNode;
   }
+
+  remove(data: T) {
+    let temp: Node<T> | null = this.head;
+    let prevNode: Node<T> | null = null;
+
+    if (this.checkIsEmpty()) return;
+    if (this.head?.data == data) {
+      this.head = this.head.next;
+      return;
+    }
+    while (temp != null && temp.data != data) {
+      prevNode = temp;
+      temp = temp.next;
+    }
+
+    if (this.tail?.data == data) {
+      this.tail = prevNode;
+      return;
+    }
+
+    if (prevNode == null || temp == null) return;
+    const nextNode = temp?.next;
+    prevNode.next = nextNode;
+  }
+
+  checkIsEmpty(): boolean {
+    return this.head == null || this.tail == null
+  }
 }
 
 const list = new SingleLinkedList<number>();
@@ -73,6 +103,7 @@ list.insert(22);
 list.insert(5);
 list.insert(45);
 
-
-list.insertAt(22,7)
 list.display();
+
+list.remove(2)
+list.display()

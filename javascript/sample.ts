@@ -12,3 +12,6 @@ for (let i = 0; i < arr.length - 4; i++) {
   }
 }
 console.log("arr",arr)
+
+// space complexity 0(1)S
+// time complexity 0(n)T

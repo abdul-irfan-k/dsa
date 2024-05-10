@@ -15,7 +15,7 @@ export class SingleLinkedList<T> {
       str += `${temp.data} `;
       temp = temp.next;
     }
-    console.log(str)
+    console.log(str);
   }
 
   insertInBegin(data: T) {
@@ -93,7 +93,16 @@ export class SingleLinkedList<T> {
   }
 
   checkIsEmpty(): boolean {
-    return this.head == null || this.tail == null
+    return this.head == null || this.tail == null;
+  }
+
+  search(element: T): boolean {
+    let temp = this.head;
+    while (temp != null) {
+      if (temp.data == element) return true;
+      temp = temp.next;
+    }
+    return false;
   }
 }
 
@@ -105,5 +114,7 @@ list.insert(45);
 
 list.display();
 
-list.remove(2)
-list.display()
+list.remove(2);
+list.display();
+
+

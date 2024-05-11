@@ -4,6 +4,7 @@ export class Node<T> {
   constructor(public data: T) {}
 }
 
+export type NodeType<T> = Node<T> | null;
 class DoublyLinkedList<T> {
   head: Node<T> | null = null;
   tail: Node<T> | null = null;
@@ -35,29 +36,76 @@ class DoublyLinkedList<T> {
   }
 
   display() {
-    if(this.checkIsEmpty())return 
+    if (this.checkIsEmpty()) return;
 
     let str = "";
     let temp = this.head;
 
     while (temp != null) {
-        str +=`${temp.data} `
-        temp = temp.next
+      str += `${temp.data} `;
+      temp = temp.next;
     }
-    console.log(str)
+    console.log(str);
+  }
+  displayReverse() {
+    if (this.checkIsEmpty()) return;
+
+    let str = "";
+    let temp = this.tail;
+
+    while (temp != null) {
+      str += `${temp.data} `;
+      temp = temp.prev;
+    }
+    console.log(str);
   }
 
-  checkIsEmpty(){
-    return this.head == null || this.tail == null
+  checkIsEmpty() {
+    return this.head == null || this.tail == null;
+  }
+
+  remove(element: T) {
+    if (this.head == null || this.tail == null) return;
+
+    if (this.head.data == element) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let temp: NodeType<T> = this.head;
+
+    while (temp?.next != null && temp.data != element) {
+      temp = temp.next;
+    }
+
+    if (temp.next == null && temp.data == element) {
+      this.tail = this.tail.prev;
+      //@ts-ignore
+      this.tail.next = null;
+      console.log("true",this.tail)
+      return;
+    }
+    if (temp.data == element) {
+      const previousNode = temp.prev;
+      //@ts-ignore
+      previousNode?.next = temp.next;
+      return;
+    }
+    return;
   }
 }
 
+const list = new DoublyLinkedList<number>();
+list.insert(5);
+list.insert(12);
+list.insert(25);
+list.insert(43);
+list.insert(19);
+list.insert(31);
+// list.insertAtBegin(22);
 
 
-const list = new DoublyLinkedList<number>()
-list.insert(5)
-list.insert(12)
-list.insert(25)
-list.insert(31)
-list.insertAtBegin(22)
+// list.remove(19)
+list.remove(31)
+
 list.display()

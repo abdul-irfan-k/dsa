@@ -39,3 +39,5 @@ list.insert(18);
 list.display();
 list.reverseInSingleLoop();
 list.display();
+list.reverseInSingleLoop();
+list.display();

@@ -82,13 +82,15 @@ class DoublyLinkedList<T> {
       this.tail = this.tail.prev;
       //@ts-ignore
       this.tail.next = null;
-      console.log("true",this.tail)
       return;
     }
     if (temp.data == element) {
       const previousNode = temp.prev;
+      const nextNode = temp.next
       //@ts-ignore
-      previousNode?.next = temp.next;
+      previousNode.next = nextNode;
+      //@ts-ignore
+      nextNode?.prev = previousNode
       return;
     }
     return;
@@ -105,7 +107,9 @@ list.insert(31);
 // list.insertAtBegin(22);
 
 
-// list.remove(19)
+list.remove(43)
+list.remove(19)
 list.remove(31)
 
 list.display()
+list.displayReverse()

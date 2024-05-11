@@ -5,7 +5,7 @@ export class Node<T> {
 }
 
 export type NodeType<T> = Node<T> | null;
-class DoublyLinkedList<T> {
+export class DoublyLinkedList<T> {
   head: Node<T> | null = null;
   tail: Node<T> | null = null;
 
@@ -97,19 +97,19 @@ class DoublyLinkedList<T> {
   }
 }
 
-const list = new DoublyLinkedList<number>();
-list.insert(5);
-list.insert(12);
-list.insert(25);
-list.insert(43);
-list.insert(19);
-list.insert(31);
-// list.insertAtBegin(22);
+// const list = new DoublyLinkedList<number>();
+// list.insert(5);
+// list.insert(12);
+// list.insert(25);
+// list.insert(43);
+// list.insert(19);
+// list.insert(31);
+// // list.insertAtBegin(22);
 
 
-list.remove(43)
-list.remove(19)
-list.remove(31)
+// list.remove(43)
+// list.remove(19)
+// list.remove(31)
 
-list.display()
-list.displayReverse()
+// list.display()
+// list.displayReverse()

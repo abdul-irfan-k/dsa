@@ -1,4 +1,4 @@
-class Stack<T> {
+export class Stack<T> {
   items: T[];
   size: number;
   constructor() {
@@ -13,7 +13,7 @@ class Stack<T> {
   }
 
   pop(): T | null {
-    if (this.size == 0) return null;
+    if (this.isEmpty()) return null;
 
     let temp = this.items[this.size - 1];
     this.items.pop();
@@ -21,21 +21,29 @@ class Stack<T> {
     return temp;
   }
   peek(): T | null {
+    if(this.isEmpty())return null
     return this.items[this.size - 1];
   }
 
   display() {
-    if(this.size < 1)return console.log("stack is empty")
+    if(this.isEmpty())return console.log("stack is empty")
     let str = ""
     for(let i = 0;i<this.size;i++){
         str +=`${this.items[i]} `
     }
     console.log(str)
   }
+
+  isEmpty():boolean{
+    return this.size <1
+  }
 }
 
 
 // const stackList = new Stack<number | string>()
+// stackList.display()
+// stackList.pop()
+// console.log(stackList.peek())
 // stackList.push(10)
 // stackList.push(3)
 // stackList.push(6)
@@ -44,3 +52,4 @@ class Stack<T> {
 // stackList.pop()
 // stackList.display()
 // console.log(stackList.peek())
+

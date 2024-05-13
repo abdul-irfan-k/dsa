@@ -11,7 +11,8 @@ class Queue<T> {
     if (this.front == null) return console.log("Queue is empty");
     let temp = this.front;
     if (this.front == this.rear) {
-      console.log("front and rear is same ");
+      this.front = this.rear = null
+      return 
     }
     this.front = this.front.next;
     return temp;
@@ -30,13 +31,13 @@ class Queue<T> {
   peek() {
     return this.front;
   }
-  isEmpty(front: Node<T> | null = this.front): front is Node<T> {
+  isNotEmpty(front: Node<T> | null = this.front): front is Node<T> {
     return front instanceof Node;
   }
 
   display() {
     let temp = this.front;
-    if (!this.isEmpty(temp)) return console.log("queue is empty");
+    if (!this.isNotEmpty(temp)) return console.log("queue is empty");
 
     let str = "";
     while (temp != null) {
@@ -58,3 +59,7 @@ queue.display()
 queue.dequeue()
 queue.display()
 
+queue.dequeue()
+queue.dequeue()
+queue.dequeue()
+queue.display()

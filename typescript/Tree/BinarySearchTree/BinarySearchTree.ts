@@ -93,10 +93,10 @@ class BinarySearchTree<T> {
   }
 
   remove(element: T) {
+    this.removeHelper(element, this.root, null);
+  }
+  private removeHelper(element: T, currentNode: NODE<T>, parentNode: NODE<T>) {
     if (this.root == null) return;
-    let currentNode: NODE<T> = this.root;
-    let parentNode: NODE<T> = null;
-
     while (currentNode != null) {
       if (element < currentNode.data) {
         parentNode = currentNode;
@@ -105,32 +105,28 @@ class BinarySearchTree<T> {
         parentNode = currentNode;
         currentNode = currentNode?.right;
       } else {
-        if (parentNode == null) {
-          const middleNode = this.getMinValue(currentNode?.right);
-          if (middleNode == null) return console.log("middel node not found");
-          this.remove(middleNode?.data);
-
-          this.root.data = middleNode?.data;
+        if (currentNode.right != null && currentNode.left != null) {
+          currentNode.data = this.getMinValue(currentNode.right).data;
+          this.removeHelper(currentNode.data, currentNode.right, currentNode);
         } else {
-          if (currentNode.right != null && currentNode.right != null) {
-            const middleNode = this.getMinValue(currentNode.right)
-            if (middleNode == null) return console.log(" node not found in the middle node");
-            this.remove(middleNode.data)
-            currentNode.data = middleNode.data
+          if (parentNode == null) {
+            if (currentNode.right == null) {
+              this.root = currentNode.left;
+            } else if (currentNode.left == null) {
+              this.root = currentNode.right;
+            }
           } else {
-            if (currentNode.right != null) {
-              parentNode.right = currentNode.right;
-              return;
-            } else if (currentNode.left != null) {
-              parentNode.left = currentNode.left;
-              return;
+            if (currentNode == parentNode.left) {
+              if (currentNode.right == null) {
+                parentNode.left = currentNode.left;
+              } else {
+                parentNode.left = currentNode.right;
+              }
             } else {
-              if (currentNode == parentNode.left) {
-                parentNode.left = null;
-                return;
-              } else if (currentNode == parentNode.right) {
-                parentNode.right = null;
-                return;
+              if (currentNode.right == null) {
+                parentNode.right = currentNode.left;
+              } else {
+                parentNode.right = currentNode.right;
               }
             }
           }
@@ -140,7 +136,7 @@ class BinarySearchTree<T> {
     }
   }
 
-  getMinValue(currentNode: NODE<T>): NODE<T> {
+  getMinValue(currentNode: Node<T>): Node<T> {
     while (currentNode != null) {
       if (currentNode.left == null) {
         return currentNode;
@@ -148,7 +144,7 @@ class BinarySearchTree<T> {
 
       currentNode = currentNode.left;
     }
-    return null;
+    return currentNode;
   }
 }
 
@@ -160,3 +156,8 @@ sampleTree.insert(40);
 sampleTree.insert(20);
 sampleTree.insert(60);
 sampleTree.insert(80);
+sampleTree.insert(99)
+
+console.log(sampleTree.contains(99))
+sampleTree.remove(99)
+console.log(sampleTree.contains(99))

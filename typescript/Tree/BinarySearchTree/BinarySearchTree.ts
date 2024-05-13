@@ -1,4 +1,4 @@
-type NODE<T> = Node<T> | null;
+export type NODE<T> = Node<T> | null;
 export class Node<T> {
   left: NODE<T>;
   right: NODE<T>;
@@ -8,7 +8,7 @@ export class Node<T> {
   }
 }
 
-class BinarySearchTree<T> {
+export class BinarySearchTree<T> {
   root: NODE<T>;
   constructor() {
     this.root = null;
@@ -148,16 +148,16 @@ class BinarySearchTree<T> {
   }
 }
 
-const sampleTree = new BinarySearchTree<number>();
-sampleTree.insert(50);
-sampleTree.insert(30);
-sampleTree.insert(70);
-sampleTree.insert(40);
-sampleTree.insert(20);
-sampleTree.insert(60);
-sampleTree.insert(80);
-sampleTree.insert(99)
+// const sampleTree = new BinarySearchTree<number>();
+// sampleTree.insert(50);
+// sampleTree.insert(30);
+// sampleTree.insert(70);
+// sampleTree.insert(40);
+// sampleTree.insert(20);
+// sampleTree.insert(60);
+// sampleTree.insert(80);
+// sampleTree.insert(99)
 
-console.log(sampleTree.contains(99))
-sampleTree.remove(99)
-console.log(sampleTree.contains(99))
+// console.log(sampleTree.contains(99))
+// sampleTree.remove(99)
+// console.log(sampleTree.contains(99))

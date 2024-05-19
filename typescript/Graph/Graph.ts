@@ -1,3 +1,6 @@
+import { Queue } from "../Queue/Queue";
+import { Stack } from "../Stack/Stack";
+
 export class Graph<T> {
   graph = new Map<T, Array<T>>();
 
@@ -17,7 +20,10 @@ export class Graph<T> {
     }
     if (this.checkIsNotContainedSameEdge(vertex, vertexEdge))
       this.graph.get(vertex)?.push(vertexEdge);
-    if (isBiDirectional && this.checkIsNotContainedSameEdge(vertexEdge, vertex)) {
+    if (
+      isBiDirectional &&
+      this.checkIsNotContainedSameEdge(vertexEdge, vertex)
+    ) {
       this.graph.get(vertexEdge)?.push(vertex);
     }
   }
@@ -35,4 +41,28 @@ export class Graph<T> {
   private checkIsNotContainedSameEdge(vertex: T, vertexEdge: T): boolean {
     return this.graph.get(vertex)?.indexOf(vertexEdge) == -1;
   }
+
+  bredthFirstSearch(staringVertex: T) {
+    const visitedVertex: T[] = [];
+    const queue = new Queue<T>();
+    queue.enqueue(staringVertex);
+    visitedVertex.push(staringVertex);
+
+    while (!queue.isEmpty()) {
+      const frontElement = queue.peek();
+      if (frontElement == null) return;
+      console.log("front element ",frontElement.data)
+      queue.dequeue();
+      this.graph.get(frontElement?.data)?.forEach((nearestVertex) => {
+        if (visitedVertex.indexOf(nearestVertex) < 0) {
+          queue.enqueue(nearestVertex);
+          visitedVertex.push(nearestVertex);
+        } 
+        
+      });
+    }
+    console.log(visitedVertex)
 }
+}
+
+

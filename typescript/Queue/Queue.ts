@@ -11,8 +11,8 @@ export class Queue<T> {
     if (this.front == null) return console.log("Queue is empty");
     let temp = this.front;
     if (this.front == this.rear) {
-      this.front = this.rear = null
-      return 
+      this.front = this.rear = null;
+      return;
     }
     this.front = this.front.next;
     return temp;
@@ -31,8 +31,12 @@ export class Queue<T> {
   peek() {
     return this.front;
   }
-  isNotEmpty(front: Node<T> | null = this.front): front is Node<T> {
+  private isNotEmpty(front: Node<T> | null = this.front): front is Node<T> {
     return front instanceof Node;
+  }
+
+  isEmpty(){
+    return this.front == null
   }
 
   display() {
@@ -44,10 +48,9 @@ export class Queue<T> {
       str += `${temp.data} `;
       temp = temp.next;
     }
-    console.log(str)
+    console.log(str);
   }
 }
-
 
 // const queue = new Queue<number>()
 // queue.enqueue(10)

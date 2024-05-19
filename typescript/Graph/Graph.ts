@@ -51,18 +51,30 @@ export class Graph<T> {
     while (!queue.isEmpty()) {
       const frontElement = queue.peek();
       if (frontElement == null) return;
-      console.log("front element ",frontElement.data)
       queue.dequeue();
       this.graph.get(frontElement?.data)?.forEach((nearestVertex) => {
         if (visitedVertex.indexOf(nearestVertex) < 0) {
           queue.enqueue(nearestVertex);
           visitedVertex.push(nearestVertex);
-        } 
-        
+        }
       });
     }
-    console.log(visitedVertex)
-}
-}
+    console.log(visitedVertex);
+  }
 
+  depthFirstSearch(staringVertex: T) {
+    const visited = [];
+    visited.push(staringVertex);
+    this.depthFirstSearchHelper(staringVertex, visited);
+  }
+  private depthFirstSearchHelper(currentVertex: T, visited: T[]) {
+    console.log(currentVertex);
 
+    this.graph.get(currentVertex)?.forEach((edgeVertex) => {
+      if (!visited.includes(edgeVertex)) {
+          visited.push(edgeVertex);
+          this.depthFirstSearchHelper(edgeVertex, visited);
+      }
+    });
+  }
+}

@@ -3,7 +3,7 @@ export class Node<T> {
   constructor(public data: T) {}
 }
 
-class Queue<T> {
+export class Queue<T> {
   front: Node<T> | null = null;
   rear: Node<T> | null = null;
 
@@ -49,17 +49,17 @@ class Queue<T> {
 }
 
 
-const queue = new Queue<number>()
-queue.enqueue(10)
-queue.enqueue(45)
-queue.enqueue(31)
-console.log(queue.peek())
-queue.enqueue(17)
-queue.display()
-queue.dequeue()
-queue.display()
+// const queue = new Queue<number>()
+// queue.enqueue(10)
+// queue.enqueue(45)
+// queue.enqueue(31)
+// console.log(queue.peek())
+// queue.enqueue(17)
+// queue.display()
+// queue.dequeue()
+// queue.display()
 
-queue.dequeue()
-queue.dequeue()
-queue.dequeue()
-queue.display()
+// queue.dequeue()
+// queue.dequeue()
+// queue.dequeue()
+// queue.display()

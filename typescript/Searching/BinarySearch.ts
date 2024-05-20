@@ -13,5 +13,15 @@ class binarySearch {
   }
 }
 
-const sampleData = [2, 5, 8, 12, 16, 23, 38, 56, 72];
-console.log(binarySearch.search(sampleData, 55));
+
+class BinarySearchInRecursion {
+    static search<T = number>(){
+
+    }
+    static searchHelper<T = number>(values:Array<T>,low:T,end:T,){
+
+    }
+}
+
+// const sampleData = [2, 5, 8, 12, 16, 23, 38, 56, 72];
+// console.log(binarySearch.search(sampleData, 55));

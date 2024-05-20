@@ -1,12 +1,10 @@
 class SelectionSort {
   static sort(data: Array<number>) {
     for (let i = 0; i < data.length - 1; i++) {
-      let min = data[i];
       let minIndex = i;
-      for (let j = i; j < data.length -1; j++) {
-        if (min > data[j+1]) {
-          min = data[j+1];
-          minIndex = j+1;
+      for (let j = i; j < data.length - 1; j++) {
+        if (data[minIndex] > data[j + 1]) {
+          minIndex = j + 1;
         }
       }
       this.swap(data, i, minIndex);

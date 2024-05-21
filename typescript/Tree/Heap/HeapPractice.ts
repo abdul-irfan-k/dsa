@@ -10,5 +10,10 @@ heap.insert(4)
 heap.insert(13)
 heap.printHeap()
 console.log(heap.peek())
-console.log(heap.remove())
-heap.printHeap()
+
+
+
+console.log("-------------------------------------")
+const heapSample = new MaxHeap()
+heapSample.heapify([10,55,7,11,5,4,13])
+heapSample.printHeap()

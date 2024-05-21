@@ -116,6 +116,17 @@ class Heap<T = number> {
     }
     console.log(heap);
   }
+
+  heapify(data: Array<T>) {
+    this.heap = data;
+    const lastNonLeafNode = this.getParentChildIndex(this.heap.length) -1;
+    let currentIndex = lastNonLeafNode;
+    while (currentIndex >=0) {
+      this.heapifyDown(currentIndex);
+      
+      currentIndex--;
+    }
+  }
 }
 
 export class MinHeap<T = number> extends Heap<T> {

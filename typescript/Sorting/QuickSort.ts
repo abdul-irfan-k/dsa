@@ -5,24 +5,32 @@ class QuickSort {
   }
 
   private static partition<T = number>(data: T[], start: number, end: number) {
-    let i = start + 1;
-    let j = end;
-    const pivot = data[start];
-    if (start >= end) return 
+    let i = start;
+    let j = end - 1;
+    const middle = Math.floor((start + end) / 2);
+    const pivot = data[middle];
+    if (start >= end) return;
+    console.log("partition",data,data[i],data[j],data[middle])
+    this.swap(data, middle, end);
     while (i <= j) {
       if (data[i] > pivot && data[j] < pivot) {
         this.swap(data, i, j);
         i++;
         j--;
-      } if (data[i] <= pivot) {
+      }
+      if (data[i] <= pivot) {
         i++;
-      }  if (data[j] >= pivot) {
+      }
+      if (data[j] >= pivot) {
         j--;
       }
     }
 
-    this.swap(data, j, start);
-    this.partition(data, start, j - 1);
+     if(i>j){
+         this.swap(data,i,end)
+         j++
+     }
+    this.partition(data, 0, j - 1);
     this.partition(data, j + 1, end);
   }
 
@@ -33,4 +41,4 @@ class QuickSort {
   }
 }
 
-console.log(QuickSort.sort([4, 7, 8, 9, 5, 1]));
+console.log(QuickSort.sort([1, 7, 88, 9, 5, 4]));

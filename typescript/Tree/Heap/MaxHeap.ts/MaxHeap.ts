@@ -1,4 +1,4 @@
-export class MinHeap<T = number> {
+export class MaxHeap<T = number> {
   heap: Array<T>;
 
   constructor() {
@@ -15,14 +15,14 @@ export class MinHeap<T = number> {
   }
 
   remove() {
-    if(this.heap.length == 0){
-      return null
+    if (this.heap.length == 0) {
+      return null;
     }
-    const item = this.heap[0]
-    this.heap[0] = this.heap[this.heap.length -1]
-    this.heap.pop()
-    this.heapifyDown(0)
-    return item
+    const item = this.heap[0];
+    this.heap[0] = this.heap[this.heap.length - 1];
+    this.heap.pop();
+    this.heapifyDown(0);
+    return item;
   }
 
   heapifyDown(currentChildIndex: number) {
@@ -39,13 +39,13 @@ export class MinHeap<T = number> {
     const parentChild = this.heap[currentChildIndex];
 
     if (leftChild != undefined && rightChild != undefined) {
-      const smallChild = leftChild < rightChild ? leftChild : rightChild;
-      const smallChildIndex =
-        leftChild < rightChild ? leftChildIndex : rightChildIndex;
-      if (smallChild < parentChild) childSwapIndex = smallChildIndex;
-    } else if (leftChild != undefined && leftChild < parentChild) {
+      const adjucentChild = leftChild > rightChild ? leftChild : rightChild;
+      const adjucentChildIndex =
+        leftChild > rightChild ? leftChildIndex : rightChildIndex;
+      if (adjucentChild > parentChild) childSwapIndex = adjucentChildIndex;
+    } else if (leftChild != undefined && leftChild > parentChild) {
       childSwapIndex = leftChildIndex;
-    } else if (rightChild != undefined && rightChild < parentChild) {
+    } else if (rightChild != undefined && rightChild > parentChild) {
       childSwapIndex = rightChildIndex;
     }
 
@@ -61,7 +61,7 @@ export class MinHeap<T = number> {
     const parent = this.heap[parentIndex];
     const currentChild = this.heap[currentChildIndex];
 
-    if (currentChild < parent) {
+    if (currentChild > parent) {
       this.swap(parentIndex, currentChildIndex);
       this.heapifyUp(parentIndex);
     }
@@ -108,5 +108,3 @@ export class MinHeap<T = number> {
     console.log(heap);
   }
 }
-
-

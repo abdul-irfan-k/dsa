@@ -1,7 +1,7 @@
-export class MinHeap<T = number> {
+class Heap<T = number> {
   heap: Array<T>;
 
-  constructor() {
+  constructor(public selectValidChild: (leftChild: T, rightChild: T) => T) {
     this.heap = [];
   }
 
@@ -15,14 +15,14 @@ export class MinHeap<T = number> {
   }
 
   remove() {
-    if(this.heap.length == 0){
-      return null
+    if (this.heap.length == 0) {
+      return null;
     }
-    const item = this.heap[0]
-    this.heap[0] = this.heap[this.heap.length -1]
-    this.heap.pop()
-    this.heapifyDown(0)
-    return item
+    const item = this.heap[0];
+    this.heap[0] = this.heap[this.heap.length - 1];
+    this.heap.pop();
+    this.heapifyDown(0);
+    return item;
   }
 
   heapifyDown(currentChildIndex: number) {
@@ -39,13 +39,22 @@ export class MinHeap<T = number> {
     const parentChild = this.heap[currentChildIndex];
 
     if (leftChild != undefined && rightChild != undefined) {
-      const smallChild = leftChild < rightChild ? leftChild : rightChild;
-      const smallChildIndex =
-        leftChild < rightChild ? leftChildIndex : rightChildIndex;
-      if (smallChild < parentChild) childSwapIndex = smallChildIndex;
-    } else if (leftChild != undefined && leftChild < parentChild) {
+      const adjucentChild = this.selectValidChild(leftChild, rightChild);
+      const adjucentChildIndex =
+        this.selectValidChild(leftChild, rightChild) == leftChild
+          ? leftChildIndex
+          : rightChildIndex;
+      if (this.selectValidChild(adjucentChild, parentChild) == adjucentChild)
+        childSwapIndex = adjucentChildIndex;
+    } else if (
+      leftChild != undefined &&
+      this.selectValidChild(leftChild, parentChild) == leftChild
+    ) {
       childSwapIndex = leftChildIndex;
-    } else if (rightChild != undefined && rightChild < parentChild) {
+    } else if (
+      rightChild != undefined &&
+      this.selectValidChild(rightChild, parentChild)
+    ) {
       childSwapIndex = rightChildIndex;
     }
 
@@ -61,7 +70,7 @@ export class MinHeap<T = number> {
     const parent = this.heap[parentIndex];
     const currentChild = this.heap[currentChildIndex];
 
-    if (currentChild < parent) {
+    if (this.selectValidChild(parent, currentChild) == currentChild) {
       this.swap(parentIndex, currentChildIndex);
       this.heapifyUp(parentIndex);
     }
@@ -109,4 +118,19 @@ export class MinHeap<T = number> {
   }
 }
 
-
+export class MinHeap<T = number> extends Heap<T> {
+  constructor() {
+    super((leftChild: T, rightChild: T) => {
+      if (leftChild < rightChild) return leftChild;
+      else return rightChild;
+    });
+  }
+}
+export class MaxHeap<T = number> extends Heap<T> {
+  constructor() {
+    super((leftChild: T, rightChild: T) => {
+      if (leftChild > rightChild) return leftChild;
+      else return rightChild;
+    });
+  }
+}

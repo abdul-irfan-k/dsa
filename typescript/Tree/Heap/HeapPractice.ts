@@ -15,5 +15,5 @@ console.log(heap.peek())
 
 console.log("-------------------------------------")
 const heapSample = new MaxHeap()
-heapSample.heapify([10,55,7,11,5,4,13])
+heapSample.buildHeap([10,55,7,11,5,4,13])
 heapSample.printHeap()

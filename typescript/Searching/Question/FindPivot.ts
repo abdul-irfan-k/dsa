@@ -6,18 +6,13 @@ class PivotFinder {
     while (start < end) {
       const middle = Math.floor((start + end) / 2);
       const middleElement = data[middle];
-
-      if(middleElement < data[middle-1] && middleElement <data[middle+1]){
-        return middleElement
-      }
       if(middleElement < data[0] ){
         end = middle
       }
-      else if(middleElement > data[0]) {
+      else  {
         start = middle +1
-      }
-    }
-    return data[end]
+      }    }
+    return data[start]
   }
 }
 

@@ -3,9 +3,10 @@
 function search(nums: number[], target: number): number {
     let start = 0
     let end = nums.length - 1
+    let middle =0
 
     while (start <= end) {
-        let middle = Math.floor((start + end) / 2)
+         middle = Math.floor((start + end) / 2)
         if (nums[middle] == target) {
             return middle
         }

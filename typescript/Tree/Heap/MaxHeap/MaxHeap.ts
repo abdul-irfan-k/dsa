@@ -107,4 +107,15 @@ export class MaxHeap<T = number> {
     }
     console.log(heap);
   }
+
+
+  buildHeap(data: Array<T>) {
+    this.heap = data;
+    const lastNonLeafNode = Math.floor((this.heap.length /2)-1)
+    let currentIndex = lastNonLeafNode;
+    while (currentIndex >=0) {
+      this.heapifyDown(currentIndex);
+      currentIndex--;
+    }
+  }
 }

@@ -10,7 +10,6 @@ class QuickSort {
     const middle = Math.floor((start + end) / 2);
     const pivot = data[middle];
     if (start >= end) return;
-    console.log("partition",data,data[i],data[j],data[middle])
     this.swap(data, middle, end);
     while (i <= j) {
       if (data[i] > pivot && data[j] < pivot) {

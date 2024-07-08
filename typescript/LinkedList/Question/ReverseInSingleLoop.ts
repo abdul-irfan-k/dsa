@@ -25,7 +25,20 @@ class SlinkedList<T> extends SingleLinkedList<T> {
         break;
       }
     }
+  }
 
+
+  reverseInRecursive() {
+    this.reverseInRecursiveHelper(this.head, null)
+
+  }
+  private reverseInRecursiveHelper(current: NodeType<T>, parent: NodeType<T>) {
+    if (parent == null) this.tail = current
+    const next = current?.next
+    //@ts-ignore
+    current?.next = parent
+    if (!next) return this.head = current
+    this.reverseInRecursiveHelper(next, current)
   }
 }
 
@@ -37,7 +50,9 @@ list.insert(15);
 list.insert(18);
 
 list.display();
-list.reverseInSingleLoop();
-list.display();
-list.reverseInSingleLoop();
-list.display();
+list.reverseInRecursive()
+list.display()
+// list.reverseInSingleLoop();
+// list.display();
+// list.reverseInSingleLoop();
+// list.display();

@@ -148,16 +148,16 @@ export class BinarySearchTree<T> {
   }
 }
 
-// const sampleTree = new BinarySearchTree<number>();
-// sampleTree.insert(50);
-// sampleTree.insert(30);
-// sampleTree.insert(70);
-// sampleTree.insert(40);
-// sampleTree.insert(20);
-// sampleTree.insert(60);
-// sampleTree.insert(80);
-// sampleTree.insert(99)
-
+const sampleTree = new BinarySearchTree<number>();
+sampleTree.insert(50);
+sampleTree.insert(30);
+sampleTree.insert(70);
+sampleTree.insert(40);
+sampleTree.insert(20);
+sampleTree.insert(60);
+sampleTree.insert(80);
+sampleTree.insert(99)
+// sampleTree
 // console.log(sampleTree.contains(99))
 // sampleTree.remove(99)
 // console.log(sampleTree.contains(99))

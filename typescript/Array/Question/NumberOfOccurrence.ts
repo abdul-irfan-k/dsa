@@ -3,10 +3,10 @@ class Solution {
     // Function to count the occurrences of x in the array.
     static countFreq(arr, target) {
         const start = this.findPosition(arr, target, true)
+        if (start === -1) return 0
         const end = this.findPosition(arr, target, false)
 
 
-        if (start === -1 | end === -1) return 0
         return end - start + 1
     }
 

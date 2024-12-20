@@ -4,6 +4,7 @@ function findMin(nums: number[]): number {
 
     while (low < high) {
         const mid = Math.floor((low + high) / 2)
+        if (nums[low] < nums[high]) return nums[low]
         if (nums[low] < nums[high] || nums[mid] < nums[low]) high = mid
         else {
             low = mid
@@ -15,4 +16,3 @@ function findMin(nums: number[]): number {
 
 
 console.log(findMin([5, 1, 2, 3, 4]))
-console.log(findMin([3,4,5,1,2]))

@@ -4,7 +4,7 @@ This repository is a comprehensive collection of **Data Structures and Algorithm
 
 ## 📂 Repository Structure
 
-The repository is structured into directories based on key DSA topics. Each directory contains solutions to problems, categorized by subtopics where applicable.
+The repository is structured into directories based on key DSA topics. 
 
 ## 🌟 Topics Covered  
 

@@ -11,9 +11,17 @@ function minEatingSpeed(piles, h) {
         return true
     }
 
-    piles.sort((a, b) => a - b)
+    function findMax() {
+        let maxi = piles[0]
+        for (let i = 1; i < piles.length; i++) {
+            maxi = Math.max(maxi, piles[i]);
+        }
+        return maxi;
+    }
+
+
     let start = 0
-    let end = piles[piles.length - 1]
+    let end = findMax()
     if (h == piles.length) return end
 
     while (start < end) {

@@ -1,4 +1,4 @@
-# DSA Solutions in JavaScript & TypeScript 🚀
+# 🚀 DSA Solutions in JavaScript & TypeScript
 
 This repository is a comprehensive collection of **Data Structures and Algorithms (DSA)** solutions implemented in **JavaScript** and **TypeScript**. It is organized by topics and subtopics to provide a clear and systematic approach to problem-solving.
 
